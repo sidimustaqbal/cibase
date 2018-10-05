@@ -3,7 +3,11 @@
 
 <div id="infoMessage"><?php echo $message;?></div>
 
-<?php echo form_open("users/auth/login");?>
+<?php
+$redirect = ($this->input->get('redirect')) ? 'redirect='.$this->input->get('redirect') : '';
+var_dump($redirect);
+echo form_open("users/auth/login?".$redirect);
+?>
 
   <p>
     <?php echo lang('login_identity_label', 'identity');?>

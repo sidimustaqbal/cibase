@@ -22,10 +22,10 @@
 					<?php echo anchor("users/auth/edit_group/".$group->id, htmlspecialchars($group->name,ENT_QUOTES,'UTF-8')) ;?><br />
                 <?php endforeach?>
 			</td>
-			<td><?php echo ($user->active) ? anchor("users/auth/deactivate/".$user->id, lang('index_active_link')) : anchor("users/auth/activate/". $user->id, lang('index_inactive_link'));?></td>
-			<td><?php echo anchor("users/auth/edit_user/".$user->id, 'Edit') ;?></td>
+			<td><?php echo ($user->active) ? anchor("users/user/deactivate/".$user->id, lang('index_active_link')) : anchor("users/user/activate/". $user->id, lang('index_inactive_link'));?></td>
+			<td><?php echo anchor("users/user/edit_user/".$user->id, 'Edit') ;?></td>
 		</tr>
 	<?php endforeach;?>
 </table>
 
-<p><?php echo anchor('users/auth/create_user', lang('index_create_user_link'))?> | <?php echo anchor('users/auth/create_group', lang('index_create_group_link'))?></p>
+<p><?php echo anchor('users/user/create_user', lang('index_create_user_link'))?> | <?php echo anchor('users/auth/create_group', lang('index_create_group_link'))?></p>

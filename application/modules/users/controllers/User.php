@@ -138,7 +138,8 @@ class User extends Admin_Controller {
 				'value' => $this->form_validation->set_value('password_confirm'),
 			);
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $data);
+			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $data);
+			$this->template->build('admin/user_form', $data);
 		}
 	}
 
