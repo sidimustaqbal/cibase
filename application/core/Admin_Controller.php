@@ -9,8 +9,12 @@ class Admin_Controller extends MY_Controller {
 
 		if (!$this->ion_auth->logged_in())
 		{
+			$uri = $this->uri->uri_string();
 			// redirect them to the login page
-			redirect('auth/login', 'refresh');
+			redirect('users/auth/login?redirect='.$uri, 'refresh');
 		}
+
+		$this->template->set_partial('navigation','partials/navigation');
+		$this->template->set_partial('notices','partials/notices');
 	}
 }

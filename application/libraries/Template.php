@@ -205,6 +205,7 @@ class Template
 		}
 
 		// Output template variables to the template
+		$template['module']	= $this->_module;
 		$template['title']	= $this->_title;
 		$template['breadcrumbs'] = $this->_breadcrumbs;
 		$template['metadata']	= implode("\n\t\t", $this->_metadata);
@@ -212,7 +213,7 @@ class Template
 
 		// Assign by reference, as all loaded views will need access to partials
 		$this->_data['template'] =& $template;
-
+		
 		foreach ($this->_partials as $name => $partial)
 		{
 			// We can only work with data arrays
@@ -221,7 +222,7 @@ class Template
 			// If it uses a view, load it
 			if (isset($partial['view']))
 			{
-				$template['partials'][$name] = $this->_find_view($partial['view'], $partial['data']);
+				$template['partials'][$name] = $this->_find_view($partial['view'], $partial['data'], FALSE);
 			}
 
 			// Otherwise the partial must be a string

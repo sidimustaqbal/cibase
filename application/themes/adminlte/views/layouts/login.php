@@ -33,11 +33,20 @@
 		<div class="login-logo">
 			<a href="../../index2.html"><b>Admin</b>LTE</a>
 		</div>
+
 		<!-- /.login-logo -->
 		<div class="login-box-body">
 			<p class="login-box-msg">Sign in to start your session</p>
-
-			<?php echo form_open("users/auth/login");?>
+			<?php if(isset($message)) { ?>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<?php echo $message;?>
+			</div>
+			<?php } ?>
+			<?php
+			$redirect = ($this->input->get('redirect')) ? 'redirect='.$this->input->get('redirect') : '';
+			echo form_open("users/auth/login?".$redirect);
+			?>
 				<div class="form-group has-feedback">
 					<input type="email" class="form-control" placeholder="Email" name="identity">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
