@@ -23,7 +23,7 @@
 			<?php
 			$menu_links = array(
 				'users/admin/user/index','users/admin/user/view','users/admin/user/create','users/admin/user/edit',
-				'users/group/index'
+				'users/admin/group/index','users/admin/group/view','users/admin/group/create','users/admin/group/edit',
 			);
 			$sub_menu_active = is_active_menu($menu_links, $active_uri);
 			?>

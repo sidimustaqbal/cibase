@@ -1807,6 +1807,16 @@ class Ion_auth_model extends CI_Model
 			$this->_ion_where = array();
 		}
 
+		if (isset($this->_ion_like) && !empty($this->_ion_like))
+		{
+			foreach ($this->_ion_like as $like)
+			{
+				$this->db->or_like($like['like'], $like['value'], $like['position']);
+			}
+
+			$this->_ion_like = array();
+		}
+
 		if (isset($this->_ion_limit) && isset($this->_ion_offset))
 		{
 			$this->db->limit($this->_ion_limit, $this->_ion_offset);
