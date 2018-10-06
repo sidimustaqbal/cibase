@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH.'modules/users');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('session','database','email','template','users/ion_auth','form_validation');
+$autoload['libraries'] = array('session','database','email','template','users/ion_auth','form_validation','pagination');
 
 /*
 | -------------------------------------------------------------------
