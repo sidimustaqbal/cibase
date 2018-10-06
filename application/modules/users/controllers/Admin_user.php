@@ -56,7 +56,7 @@ class Admin_user extends Admin_Controller {
 		$data = array();
 
 		// get user data
-		$data['field'] = $this->ion_auth->user($id)->result();
+		$data['field'] = $this->ion_auth->user($id)->row();
 
 		// if data not found, redirect it to list
 		if($data['field']==null) {
@@ -64,12 +64,8 @@ class Admin_user extends Admin_Controller {
 			redirect('users/admin/user/index');
 		}
 		
-		foreach ($data['field'] as $k => $user)
-		{
-			$data['field'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-		}
+		$data['field']->groups = $this->ion_auth->get_users_groups($data['field']->id)->result();
 
-		$data['field'] = $this->ion_auth->user($id)->row();
 		$data['groups'] = $this->ion_auth->groups()->result_array();
 		$data['currentGroups'] = $this->ion_auth->get_users_groups($id)->result();
 
@@ -117,7 +113,7 @@ class Admin_user extends Admin_Controller {
 		}
 
 		// get user data
-		$data['field'] = $this->ion_auth->user($id)->result();
+		$data['field'] = $this->ion_auth->user($id)->row();
 
 		// if data not found, redirect it to list
 		if($data['field']==null) {
@@ -125,10 +121,8 @@ class Admin_user extends Admin_Controller {
 			redirect('users/admin/user/index');
 		}
 
-		foreach ($data['field'] as $k => $user)
-		{
-			$data['field'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-		}
+		$data['field']->groups = $this->ion_auth->get_users_groups($data['field']->id)->result();
+		
 		$data['groups'] = $this->ion_auth->groups()->result_array();
 		$data['currentGroups'] = $this->ion_auth->get_users_groups($id)->result();
 
@@ -144,6 +138,12 @@ class Admin_user extends Admin_Controller {
 
 	public function delete($id=0)
 	{
+		// make sure the admin account cannot be deleted
+		if($id==1) {
+			$this->session->set_flashdata('error', 'User cannot deleted');
+			redirect('users/admin/user/index');
+		}
+
 		// get user data
 		$data['field'] = $this->ion_auth->user($id)->result();
 
