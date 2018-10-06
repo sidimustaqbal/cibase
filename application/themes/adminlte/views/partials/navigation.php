@@ -14,12 +14,20 @@
 
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu" data-widget="tree">
-			<li class="header">MAIN NAVIGATION</li>
+			<!-- <li class="header">MAIN NAVIGATION</li> -->
 			<?php
 			$active_uri = $this->uri->uri_string();
 			?>
 			<li class="<?php echo ($active_uri=='admin') ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-			<li class="treeview <?php echo (in_array($active_uri,array('users/admin/user/index','users/group/index'))) ? 'active' : ''; ?>">
+
+			<?php
+			$menu_links = array(
+				'users/admin/user/index','users/admin/user/view','users/admin/user/create','users/admin/user/edit',
+				'users/group/index'
+			);
+			$sub_menu_active = is_active_menu($menu_links, $active_uri);
+			?>
+			<li class="treeview <?php echo ($sub_menu_active) ? 'active' : ''; ?>">
 				<a href="#">
 					<i class="fa fa-users"></i> <span>Users</span>
 					<span class="pull-right-container">
@@ -27,8 +35,18 @@
 					</span>
 				</a>
 				<ul class="treeview-menu">
-					<li class="<?php echo ($active_uri=='users/admin/user/index') ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>users/admin/user/index"><i class="fa fa-circle-o"></i> Users</a></li>
-					<li class="<?php echo ($active_uri=='users/group/index') ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>users/group/index"><i class="fa fa-circle-o"></i> Groups</a></li>
+					<?php
+					$menu_links = array('users/admin/user/index','users/admin/user/view','users/admin/user/create','users/admin/user/edit');
+					?>
+					<li class="<?php echo (is_active_menu($menu_links, $active_uri)) ? 'active' : ''; ?>">
+						<a href="<?php echo base_url(); ?>users/admin/user/index"><i class="fa fa-circle-o"></i> Users</a>
+					</li>
+					<?php
+					$menu_links = array('users/admin/group/index','users/admin/group/view','users/admin/group/create','users/admin/group/edit');
+					?>
+					<li class="<?php echo (is_active_menu($menu_links, $active_uri)) ? 'active' : ''; ?>">
+						<a href="<?php echo base_url(); ?>users/admin/group/index"><i class="fa fa-circle-o"></i> Groups</a>
+					</li>
 				</ul>
 			</li>
 

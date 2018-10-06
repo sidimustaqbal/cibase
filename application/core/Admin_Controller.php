@@ -16,5 +16,7 @@ class Admin_Controller extends MY_Controller {
 
 		$this->template->set_partial('navigation','partials/navigation');
 		$this->template->set_partial('notices','partials/notices');
+
+		$this->load->helper('admin_theme');
 	}
 }

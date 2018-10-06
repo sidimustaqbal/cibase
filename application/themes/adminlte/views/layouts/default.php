@@ -16,6 +16,8 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/css/AdminLTE.min.css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/css/skins/_all-skins.min.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/css/custom.css">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -147,13 +149,23 @@
 	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->
 	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/fastclick/lib/fastclick.js"></script>
+	<!-- AdminLTE for bootbox -->
+	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/bootbox.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url(); ?>assets/adminlte/js/adminlte.min.js"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/js/demo.js"></script>
 	<script>
 		$(document).ready(function () {
-			$('.sidebar-menu').tree()
+			$('.sidebar-menu').tree();
+
+			$('body').on('click','.confirm', function(event) {
+				event.preventDefault();
+				var link = $(this).attr('href');;
+				bootbox.confirm("<?php echo lang('globals:dialog:confirm_message'); ?>", function(result) {
+					if(result) {
+						window.location.href = link;
+					}
+				}); 
+			});
 		})
 	</script>
 </body>

@@ -1,0 +1,7 @@
+.action-buttons .btn {
+	margin-left: 5px;
+}
+
+.action-buttons .btn:first-child {
+	margin-left: 0;
+}
