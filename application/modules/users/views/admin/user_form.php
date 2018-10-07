@@ -55,6 +55,40 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="inputgroups" class="col-sm-2 control-label"><?php echo lang('users:groups'); ?></label>
+
+					<div class="col-sm-5">
+						<?php
+						$value = array();
+						if($this->input->post('groups')) {
+							$value = $this->input->post('groups');
+						} elseif ($mode=='edit') {
+							// $value = (isset($field->groups)) ? $field->groups : '';
+							if(!empty($field->groups)) {
+								foreach ($field->groups as $group) {
+									$value[] = $group->id;
+								}
+							}
+						}
+						?>
+						
+						<?php foreach($groups as $group_entry) { ?>
+						<div class="checkbox">
+							<label>
+								<?php
+								$checked = '';
+								if(in_array($group_entry['id'], $value)) {
+									$checked = 'checked="checked"';
+								}
+								?>
+								<input type="checkbox" name="groups[]" value="<?php echo $group_entry['id']; ?>" <?php echo $checked; ?>>
+								<?php echo $group_entry['name']; ?>
+							</label>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="inputFirstName" class="col-sm-2 control-label"><?php echo lang('users:first_name'); ?></label>
 
 					<div class="col-sm-5">

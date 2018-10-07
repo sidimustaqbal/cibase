@@ -10,7 +10,7 @@
 				<form class="form-horizontal">
 					<div class="box-body">
 						<div class="form-group">
-							<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+							<label for="input<?php echo lang('users:email'); ?>" class="col-sm-2 control-label"><?php echo lang('users:email'); ?></label>
 
 							<div class="col-sm-5">
 								<?php
@@ -19,11 +19,11 @@
 									$value = $this->input->get('email');
 								}
 								?>
-								<input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email" value="<?php echo $value; ?>">
+								<input type="text" class="form-control" id="input<?php echo lang('users:email'); ?>" placeholder="<?php echo lang('users:email'); ?>" name="email" value="<?php echo $value; ?>">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputFullName" class="col-sm-2 control-label">FullName</label>
+							<label for="input<?php echo lang('users:full_name'); ?>" class="col-sm-2 control-label"><?php echo lang('users:full_name'); ?></label>
 
 							<div class="col-sm-5">
 								<?php
@@ -32,7 +32,7 @@
 									$value = $this->input->get('full_name');
 								}
 								?>
-								<input type="text" class="form-control" id="inputFullName" placeholder="FullName" name="full_name" value="<?php echo $value; ?>">
+								<input type="text" class="form-control" id="input<?php echo lang('users:full_name'); ?>" placeholder="<?php echo lang('users:full_name'); ?>" name="full_name" value="<?php echo $value; ?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -52,9 +52,10 @@
 					<thead>
 						<tr>
 							<th style="width: 50px">No</th>
-							<th>Username</th>
-							<th>Email</th>
-							<th>Full Name</th>
+							<th><?php echo lang('users:email'); ?></th>
+							<th><?php echo lang('users:email'); ?></th>
+							<th><?php echo lang('users:full_name'); ?></th>
+							<th><?php echo lang('users:groups'); ?></th>
 							<th style="width: 160px"></th>
 						</tr>
 					</thead>
@@ -64,6 +65,17 @@
 							<td><?php echo $key+1; ?></td>
 							<td><?php echo $user_entry->username; ?></td>
 							<td><?php echo $user_entry->email; ?></td>
+							<td>
+								<?php
+								if(count($user_entry->groups)>0) {
+									echo '<ul>';
+									foreach ($user_entry->groups as $group) {
+										echo '<li>'.$group->name.'</li>';
+									}
+									echo '</ul>';
+								}
+								?>
+							</td>
 							<td><?php echo $user_entry->first_name.' '.$user_entry->last_name; ?></td>
 							<td>
 								<?php echo anchor('users/admin/user/view/'.$user_entry->id, lang('globals:view'), 'class="btn btn-flat btn-xs btn-info"'); ?>

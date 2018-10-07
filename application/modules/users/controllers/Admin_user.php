@@ -90,6 +90,7 @@ class Admin_user extends Admin_Controller {
 		}
 
 		$data['mode'] = 'new';
+		$data['groups'] = $this->ion_auth->groups()->result_array();
 		$data['csrf'] = $this->_get_csrf_nonce();
 
 		$this->template->title('Users | Create User')
@@ -211,8 +212,10 @@ class Admin_user extends Admin_Controller {
 				'last_name' => $this->input->post('last_name'),
 			);
 
+			$groups = $this->input->post('groups');
+
 			if($mode=='new') {
-				if($this->ion_auth->register($identity, $password, $email, $additional_data)) {
+				if($this->ion_auth->register($identity, $password, $email, $additional_data, $groups)) {
 					$this->session->set_flashdata('success', $this->ion_auth->messages());
 					
 					$result = TRUE;
@@ -225,6 +228,16 @@ class Admin_user extends Admin_Controller {
 				// check to see if we are updating the user
 				if ($this->ion_auth->update($row_id, $additional_data))
 				{
+					if(!empty($groups)) {
+						// remove from any group first
+						$this->ion_auth->remove_from_group(NULL, $row_id);
+
+						// then add to new groups
+						foreach ($groups as $group)
+						{
+							$this->ion_auth->add_to_group($group, $row_id);
+						}
+					}
 					// redirect them back to the admin page if admin, or to the base url if non admin
 					$this->session->set_flashdata('success', $this->ion_auth->messages());
 					$result = TRUE;

@@ -34,6 +34,7 @@ $lang['users:confirm_password'] = 'Confirm Password';
 $lang['users:first_name'] = 'Nama Depang';
 $lang['users:last_name'] = 'Nama Belakang';
 $lang['users:full_name'] = 'Nama Lengkap';
+$lang['users:groups'] = 'Groups';
 
 $lang['users:group:name'] = 'Nama';
 $lang['users:group:description'] = 'Deskripsi';

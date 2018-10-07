@@ -34,6 +34,7 @@ $lang['users:confirm_password'] = 'Confirm Password';
 $lang['users:first_name'] = 'First Name';
 $lang['users:last_name'] = 'Last Name';
 $lang['users:full_name'] = 'Full Name';
+$lang['users:groups'] = 'Groups';
 
 $lang['users:group:name'] = 'Name';
 $lang['users:group:description'] = 'Description';
