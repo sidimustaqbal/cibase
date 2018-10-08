@@ -50,6 +50,13 @@
 				</ul>
 			</li>
 
+			<?php
+			$menu_links = array(
+				'settings/admin/settings/index','settings/admin/settings/view','settings/admin/settings/create','settings/admin/settings/edit',
+			);
+			?>
+			<li class="<?php echo (is_active_menu($menu_links, $active_uri)) ? 'active' : ''; ?>"><a href="<?php echo base_url(); ?>settings/admin/settings/index"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+
 		</ul>
 	</section>
 	<!-- /.sidebar -->
