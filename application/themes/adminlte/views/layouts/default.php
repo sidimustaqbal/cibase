@@ -24,10 +24,38 @@
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+	<![endif]-->
 
-<!-- Google Font -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<!-- Google Font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+	<!-- jQuery 3 -->
+	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 3.3.7 -->
+	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- SlimScroll -->
+	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- FastClick -->
+	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/fastclick/lib/fastclick.js"></script>
+	<!-- AdminLTE for bootbox -->
+	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/bootbox.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="<?php echo base_url(); ?>assets/adminlte/js/adminlte.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.sidebar-menu').tree();
+
+			$('body').on('click','.confirm', function(event) {
+				event.preventDefault();
+				var link = $(this).attr('href');;
+				bootbox.confirm("<?php echo lang('globals:dialog:confirm_message'); ?>", function(result) {
+					if(result) {
+						window.location.href = link;
+					}
+				}); 
+			});
+		})
+	</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<!-- Site wrapper -->
@@ -141,32 +169,5 @@
 	</div>
 	<!-- ./wrapper -->
 
-	<!-- jQuery 3 -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap 3.3.7 -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- SlimScroll -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<!-- FastClick -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/fastclick/lib/fastclick.js"></script>
-	<!-- AdminLTE for bootbox -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/plugins/bootbox.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/js/adminlte.min.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('.sidebar-menu').tree();
-
-			$('body').on('click','.confirm', function(event) {
-				event.preventDefault();
-				var link = $(this).attr('href');;
-				bootbox.confirm("<?php echo lang('globals:dialog:confirm_message'); ?>", function(result) {
-					if(result) {
-						window.location.href = link;
-					}
-				}); 
-			});
-		})
-	</script>
 </body>
 </html>
