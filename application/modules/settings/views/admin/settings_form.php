@@ -2,11 +2,7 @@
 	<div class="box-header with-border">
 		<h3 class="box-title"><?php echo $template['title']; ?></h3>
 
-		<div class="action-buttons pull-right">
-			<?php
-			echo anchor('settings/admin/settings/create', lang('settings:settings:create'), 'class="btn btn-flat btn-sm btn-primary"');
-			?>
-		</div>
+		
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">

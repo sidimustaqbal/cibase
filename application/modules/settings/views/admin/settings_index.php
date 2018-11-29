@@ -1,6 +1,12 @@
 <div class="box box-primary">
 	<div class="box-header with-border">
 		<h3 class="box-title"><?php echo $template['title']; ?></h3>
+
+		<div class="action-buttons pull-right">
+			<?php
+			echo anchor('settings/admin/settings/create', lang('settings:settings:create'), 'class="btn btn-flat btn-sm btn-primary"');
+			?>
+		</div>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
@@ -32,7 +38,6 @@
 					<label for="actionButtons" class="col-sm-2 control-label"></label>
 					<div class="col-sm-5">
 						<button type="submit" class="btn btn-flat btn-sm btn-primary">Save</button>
-						<a href="<?php echo base_url().$return; ?>" class="btn btn-flat btn-sm btn-default">Cancel</a>
 					</div>
 				</div>
 			</div>
