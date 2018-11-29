@@ -23,3 +23,16 @@ function generate_element($type, $slug, $title, $value, $options='')
 	}
 	return $element;
 }
+
+function get_settings($slug)
+{
+	ci()->load->model('settings/settings_m');
+
+	$settings = ci()->settings_m->get_settings_by_slug($slug);
+
+	if($settings) {
+		return $settings['value'];
+	}
+
+	return false;
+}
