@@ -31,7 +31,7 @@
 
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="../../index2.html"><b>Admin</b>LTE</a>
+			<a href="<?php echo base_url(); ?>"><?php echo get_settings('site-title'); ?></a>
 		</div>
 
 		<!-- /.login-logo -->
@@ -48,11 +48,11 @@
 			echo form_open("users/auth/login?".$redirect);
 			?>
 				<div class="form-group has-feedback">
-					<input type="email" class="form-control" placeholder="Email" name="identity">
+					<input type="email" class="form-control" placeholder="Email (demo: admin@admin.com)" name="identity">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="Password" name="password">
+					<input type="password" class="form-control" placeholder="Password (demo: password)" name="password">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
@@ -72,7 +72,7 @@
 			<?php echo form_close();?>
 
 			<a href="#">I forgot my password</a><br>
-			<a href="register.html" class="text-center">Register a new membership</a>
+			<a href="<?php echo base_url(); ?>users/auth/register" class="text-center">Register a new membership</a>
 
 		</div>
 		<!-- /.login-box-body -->
