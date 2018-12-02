@@ -55,6 +55,10 @@ class Admin_user extends Admin_Controller {
 	{
 		$data = array();
 
+		if($id==0) {
+			$id = $this->current_user->id;
+		}
+
 		// get user data
 		$data['field'] = $this->ion_auth->user($id)->row();
 
