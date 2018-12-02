@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['admin/([a-zA-Z0-9_-]+)/(:any)']	    = '$1/admin/$2';
 $route['admin/([a-zA-Z0-9_-]+)']            = '$1/admin/index';
+
+$route['admin/users/user(/:any)'] = 'users/admin_user$1';
