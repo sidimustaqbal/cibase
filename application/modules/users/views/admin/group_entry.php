@@ -8,7 +8,7 @@
 			?>
 		</div>
 
-		<h3 class="box-title"><?php echo $template['title']; ?></h3>
+		<h3 class="box-title"></h3>
 	</div>
 	<div class="box-body box-profile">
 		<div class="row">

@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<div class="box box-primary">
 			<div class="box-header with-border">
-				<h3 class="box-title"><?php echo $template['title']; ?></h3>
+				<h3 class="box-title"></h3>
 				<a class="btn btn-flat btn-sm btn-primary pull-right" href="<?php echo base_url(); ?>users/admin/user/create">Create</a>
 			</div>
 			<!-- /.box-header -->

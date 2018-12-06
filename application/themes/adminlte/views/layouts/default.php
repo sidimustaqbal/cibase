@@ -125,7 +125,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					<?php echo ucwords($template['module']); ?>
+					<?php echo $template['title']; ?>
 				</h1>
 				<ol class="breadcrumb">
 					<?php
