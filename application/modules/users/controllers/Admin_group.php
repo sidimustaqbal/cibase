@@ -94,7 +94,7 @@ class Admin_group extends Admin_Controller {
 		$data = array();
 
 		if($_POST) {
-			if($this->_update_group('new')) {
+			if($this->_update_group('edit', $id)) {
 				redirect('users/admin/group/index');
 			} else {
 				$data['messages']['error'] = $this->ion_auth->errors();
@@ -150,7 +150,6 @@ class Admin_group extends Admin_Controller {
 		$result = false;
 
 		$tables = $this->config->item('tables', 'ion_auth');
-		
 		$this->form_validation->set_rules('name', lang('users:group:name'), 'trim|required');
 		$this->form_validation->set_rules('description', lang('users:group:description'), 'trim|required');
 
@@ -164,24 +163,13 @@ class Admin_group extends Admin_Controller {
 					$result = TRUE;
 				}
 			} elseif($mode=='edit') {
-				// if($this->input->post('password')) {
-				// 	$additional_data['password'] = $password;
-				// }
+				$group_update = $this->ion_auth->update_group($row_id, $group_name, $group_description);
 
-				// // check to see if we are updating the user
-				// if ($this->ion_auth->update($row_id, $additional_data))
-				// {
-				// 	// redirect them back to the admin page if admin, or to the base url if non admin
-				// 	$this->session->set_flashdata('success', $this->ion_auth->messages());
-				// 	$result = TRUE;
-				// }
-				// else
-				// {
-				// 	// redirect them back to the admin page if admin, or to the base url if non admin
-				// 	$this->session->set_flashdata('error', $this->ion_auth->errors());
-
-				// 	$result = FALSE;
-				// }
+				if ($group_update)
+				{
+					$this->session->set_flashdata('success', $this->lang->line('edit_group_saved'));
+					$result = TRUE;
+				}
 			}
 
 		}
