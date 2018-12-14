@@ -20,24 +20,23 @@ function group_has_role($module, $role)
 	}
 
 	
-	// if (in_array('admin', $user_groups))
-	// {
-	// 	return true;
-	// }
+	if (in_array('admin', $user_groups))
+	{
+		return true;
+	}
 
 	$permissions_lists = array(
-		'admin' => array(
-			'users' => array('access_user', 'view_user', 'edit_user', 'delete_user', 'create_user', 'access_group', 'view_group', 'edit_group', 'delete_group', 'create_group')
-		),
+		'admin' => array(),
 		'members' => array(
 			'users' => array('access_user', 'view_user', 'edit_user', 'delete_user', 'create_user', 'access_group', 'view_group', 'edit_group', 'delete_group', 'create_group')
 		),
 	);
 
 	$permissions[$module] = array();
-
 	foreach ($user_groups as $user_group) {
-		$permissions[$module] = array_unique(array_merge($permissions[$module], $permissions_lists[$user_group][$module]));
+		if(!empty($permissions_lists[$user_group])) {
+			$permissions[$module] = array_unique(array_merge($permissions[$module], $permissions_lists[$user_group][$module]));
+		}
 	}
 
 	if (empty($permissions[$module]) or !in_array($role, ($permissions[$module])))
