@@ -17,6 +17,14 @@ class Admin_group extends Admin_Controller {
 	public function index()
 	{
 		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','view_group')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('admin');
+		}
+
+		// -------------------------------------
 		// Pagination
 		// -------------------------------------
 		$this->_filters();
@@ -69,6 +77,14 @@ class Admin_group extends Admin_Controller {
 
 	public function create()
 	{
+		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','create_group')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('users/admin/group/index');
+		}
+
 		$data = array();
 
 		if($_POST) {
@@ -91,6 +107,14 @@ class Admin_group extends Admin_Controller {
 
 	public function edit($id='')
 	{
+		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','edit_group')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('users/admin/group/index');
+		}
+
 		$data = array();
 
 		if($_POST) {
@@ -122,6 +146,20 @@ class Admin_group extends Admin_Controller {
 
 	public function delete($id=0)
 	{
+		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','delete_group')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('users/admin/group/index');
+		}
+
+		// make sure can't delete user id 1 which is admin
+		if($id==1) {
+			$this->session->set_flashdata('error', 'Cannot delete this user');
+			redirect('users/admin/group/index');
+		}
+
 		// get group data
 		$data['field'] = $this->ion_auth->group($id)->result();
 
