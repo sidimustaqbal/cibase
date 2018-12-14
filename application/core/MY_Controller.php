@@ -9,6 +9,7 @@ class MY_Controller extends MX_Controller {
 
 		if($this->ion_auth->logged_in()) {
 			$current_user = $this->ion_auth->user()->row();
+			$current_user->groups = $this->ion_auth->get_users_groups($current_user->id)->result();
 			// Get user data
 			$this->template->current_user = ci()->current_user = $this->current_user = $current_user;
 		}
