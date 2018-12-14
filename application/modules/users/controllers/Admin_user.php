@@ -17,6 +17,14 @@ class Admin_user extends Admin_Controller {
 	public function index()
 	{
 		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','view_user')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('admin');
+		}
+
+		// -------------------------------------
 		// Pagination
 		// -------------------------------------
 		$this->_filters();
@@ -82,6 +90,14 @@ class Admin_user extends Admin_Controller {
 
 	public function create()
 	{
+		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','create_user')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('users/admin/user/index');
+		}
+
 		$data = array();
 
 		if($_POST) {
@@ -106,6 +122,14 @@ class Admin_user extends Admin_Controller {
 
 	public function edit($id=0)
 	{
+		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','edit_user')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('users/admin/user/index');
+		}
+
 		$data = array();
 
 		if($_POST) {
@@ -143,6 +167,14 @@ class Admin_user extends Admin_Controller {
 
 	public function delete($id=0)
 	{
+		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('users','delete_user')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('users/admin/user/index');
+		}
+
 		// make sure the admin account cannot be deleted
 		if($id==1) {
 			$this->session->set_flashdata('error', 'User cannot deleted');
