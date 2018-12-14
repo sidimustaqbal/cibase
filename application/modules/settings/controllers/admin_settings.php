@@ -19,6 +19,14 @@ class Admin_settings extends Admin_Controller {
 	 */
 	public function index()
 	{
+		// -------------------------------------
+		// Check permission
+		// -------------------------------------
+		if(!group_has_role('settings','manage_settings')) {
+			$this->session->set_flashdata('error', 'You don\'t have access to the page');
+			redirect('admin');
+		}
+
 		if($_POST) {
 			if($this->_update_settings('edit')) {
 				$this->session->set_flashdata('success', lang('settings:settings:edit_success'));
