@@ -12,6 +12,8 @@ function group_has_role($module, $role)
 		return false;
 	}
 
+	ci()->config->load('permissions');
+
 	$groups = ci()->current_user->groups;
 
 	$user_groups = array();
@@ -25,12 +27,7 @@ function group_has_role($module, $role)
 		return true;
 	}
 
-	$permissions_lists = array(
-		'admin' => array(),
-		'members' => array(
-			'users' => array('access_user', 'view_user', 'edit_user', 'delete_user', 'create_user', 'access_group', 'view_group', 'edit_group', 'delete_group', 'create_group')
-		),
-	);
+	$permissions_lists = ci()->config->item('permissions');
 
 	$permissions[$module] = array();
 	foreach ($user_groups as $user_group) {
